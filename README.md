@@ -129,7 +129,7 @@ HUMAND_BASE_URL=https://api-prod.humand.co
 HUMAND_AUTH=Basic xxxxxxxxx
 ```
 
-⚠ Never commit real credentials to GitHub.
+⚠ Never commit real credentials to GitHub. <- Recordatorio
 
 ---
 
