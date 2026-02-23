@@ -222,7 +222,7 @@ The middleware logs:
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Author: Roberto Ezequiel Sanabria 
 
 Integration Middleware  
 Access Control → HR Time Tracking System
