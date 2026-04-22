@@ -73,6 +73,9 @@ def enviar_a_humand(tipo, employee_id, timestamp_iso):
     if DRY_RUN:
         logger.info(f"[DRY-RUN] {tipo} | DNI {employee_id} | {timestamp_iso}")
         return
+    if not HUMAND_BASE:
+        logger.error("[CONFIG] HUMAND_BASE not set; skipping send to Humand")
+        return
 
     endpoint = (
         "/public/api/v1/time-tracking/entries/clockIn"
@@ -88,8 +91,15 @@ def enviar_a_humand(tipo, employee_id, timestamp_iso):
         "comment": "Integración HikCentral"
     }
 
+    # Construir headers dinámicamente para evitar valores None en import-time
+    headers = {"Content-Type": "application/json"}
+    if HUMAND_TOKEN:
+        headers["Authorization"] = f"Basic {HUMAND_TOKEN}"
+    else:
+        logger.warning("[CONFIG] HUMAND_TOKEN not set; request will be unauthenticated")
+
     try:
-        r = requests.post(url, json=body, headers=HEADERS, timeout=10)
+        r = requests.post(url, json=body, headers=headers, timeout=10)
         logger.info(f"[HUMAND] {tipo} DNI {employee_id} → {r.status_code}")
         if r.status_code >= 300:
             logger.warning(r.text)

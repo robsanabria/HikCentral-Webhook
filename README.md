@@ -149,6 +149,23 @@ Recommended polling interval:
 
 - Every 5–10 minutes
 
+## 🧪 Run tests locally
+
+Install the project requirements and execute pytest:
+
+```bash
+pip install -r requirements.txt
+pytest -q
+```
+
+## 🏁 Run locally (development)
+
+Create a `.env` based on `.env.example`, enable `DRY_RUN=true` for safe testing, then:
+
+```bash
+python webhook_server.py
+```
+
 ---
 
 ## 🧠 Mapping Strategy
